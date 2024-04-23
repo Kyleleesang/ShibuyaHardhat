@@ -8,7 +8,6 @@ contract NFTBatchTransfer {
     function TestbatchTransfer(address _nftContract, address _to, uint256[] memory _tokenIds) external {
         IERC721 nftContract = IERC721(_nftContract);
         for (uint256 i = 0; i < _tokenIds.length; i++) {
-            nftContract.approve(_to, _tokenIds[i]);
             nftContract.safeTransferFrom(msg.sender, _to, _tokenIds[i]);
         }
     }
@@ -18,7 +17,6 @@ contract NFTBatchTransfer {
         IERC721 nftContract = IERC721(_nftContract);
         require(_tos.length == _tokenIds.length, "Invalid arguments");
         for (uint256 i = 0; i < _tokenIds.length; i++) {
-            nftContract.approve(_tos[i], _tokenIds[i]);
             nftContract.safeTransferFrom(msg.sender, _tos[i], _tokenIds[i]);
         }
     }
