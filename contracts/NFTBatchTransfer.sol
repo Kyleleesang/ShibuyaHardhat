@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 contract NFTBatchTransfer {
 
     //Test approval for a batch transfer to a single address with approval
-    function TestbatchTransfer(address _nftContract, address _to, uint256[] memory _tokenIds) external {
+    function BasebatchTransfer(address _nftContract, address _to, uint256[] memory _tokenIds) external {
         IERC721 nftContract = IERC721(_nftContract);
         for (uint256 i = 0; i < _tokenIds.length; i++) {
             nftContract.safeTransferFrom(msg.sender, _to, _tokenIds[i]);
@@ -13,7 +13,7 @@ contract NFTBatchTransfer {
     }
 
     //test approval for a batch transfer to multiple addresses with approval
-    function TestbatchTransferToMultipleWallets(address _nftContract, address[] memory _tos, uint256[] memory _tokenIds) external {
+    function BasebatchTransferToMultipleWallets(address _nftContract, address[] memory _tos, uint256[] memory _tokenIds) external {
         IERC721 nftContract = IERC721(_nftContract);
         require(_tos.length == _tokenIds.length, "Invalid arguments");
         for (uint256 i = 0; i < _tokenIds.length; i++) {

@@ -32,7 +32,7 @@ describe("BatchTransfer", function() {
             await testNFTContract.mint(signer.address, tokenIds[i]);
             await testNFTContract.connect(signer).approve(batchTransfer.target, tokenIds[i]);
         }
-        await batchTransfer.TestbatchTransfer(testNFTContract.target, address1.address, tokenIds);
+        await batchTransfer.BasebatchTransfer(testNFTContract.target, address1.address, tokenIds);
         for (let i = 0; i < tokenIds.length; i++) {
             const owner = await testNFTContract.ownerOf(tokenIds[i]);
             expect(owner).to.equal(address1.address);
@@ -48,7 +48,7 @@ describe("BatchTransfer", function() {
             await testNFTContract.mint(signer.address, tokenIds[i]);
             await testNFTContract.connect(signer).approve(batchTransfer.target, tokenIds[i]);
         }
-        await batchTransfer.TestbatchTransferToMultipleWallets(testNFTContract.target, [address1.address, address2.address, address3.address], tokenIds);
+        await batchTransfer.BasebatchTransferToMultipleWallets(testNFTContract.target, [address1.address, address2.address, address3.address], tokenIds);
         for (let i = 0; i < tokenIds.length; i++) {
             const owner = await testNFTContract.ownerOf(tokenIds[i]);
             expect(owner).to.equal(addressList[i]);
@@ -63,7 +63,7 @@ describe("BatchTransfer", function() {
             await testNFTContract.mint(signer.address, tokenIds[i]);
             await testNFTContract.connect(signer).approve(batchTransfer.target, tokenIds[i]);
         }
-        await batchTransfer.TestbatchTransfer(testNFTContract.target, address1.address, tokenIds);
+        await batchTransfer.batchTransferToSingleWallet(testNFTContract.target, address1.address, tokenIds);
         for (let i = 0; i < tokenIds.length; i++) {
             const owner = await testNFTContract.ownerOf(tokenIds[i]);
             expect(owner).to.equal(address1.address);
@@ -79,7 +79,7 @@ describe("BatchTransfer", function() {
             await testNFTContract.mint(signer.address, tokenIds[i]);
             await testNFTContract.connect(signer).approve(batchTransfer.target, tokenIds[i]);
         }
-        await batchTransfer.TestbatchTransferToMultipleWallets(testNFTContract.target, [address1.address, address2.address, address3.address], tokenIds);
+        await batchTransfer.batchTransferToMultipleWallets(testNFTContract.target, [address1.address, address2.address, address3.address], tokenIds);
         for (let i = 0; i < tokenIds.length; i++) {
             const owner = await testNFTContract.ownerOf(tokenIds[i]);
             expect(owner).to.equal(addressList[i]);
